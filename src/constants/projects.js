@@ -1,0 +1,58 @@
+const projects = [
+  {
+    id: 0,
+    title: "Portfolio",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Non corporis ipsum nostrum libero placeat nam impedit voluptas ducimus nesciunt delectus!",
+    techStack: [
+      "Redux",
+      "ReactJS",
+      "NextJS",
+      "HTML",
+      "Express",
+      "MonGo",
+      "Tyescript",
+      "CSS",
+      "Fonmik",
+      "GoLang",
+      "Python",
+      "Java",
+      "Rust",
+    ],
+    url: "/assests/project1.jpg",
+    link: "https://www.github.com",
+  },
+  {
+    id: 1,
+    title: "kaw",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Non corporis ipsum nostrum libero placeat nam impedit voluptas ducimus nesciunt delectus!",
+    techStack: ["Formik", "Yup"],
+    url: "/assests/project1.jpg",
+    link: "https://www.github.com",
+  },
+  {
+    id: 2,
+    title: "meow",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Non corporis ipsum nostrum libero placeat nam impedit voluptas ducimus nesciunt delectus!",
+    techStack: ["HTML", "CSS"],
+    url: "/assests/project1.jpg",
+    link: "https://www.github.com",
+  },
+  {
+    id: 3,
+    title: "bhow",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Non corporis ipsum nostrum libero placeat nam impedit voluptas ducimus nesciunt delectus!",
+    techStack: ["NodeJS", "MongoDB", "NextJS", "HTML"],
+    url: "/assests/project1.jpg",
+    link: "https://www.github.com",
+  },
+  {
+    id: 4,
+    title: "cow",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Non corporis ipsum nostrum libero placeat nam impedit voluptas ducimus nesciunt delectus!",
+    techStack: ["Material-UI", "Typescript", "NextJS", "HTML"],
+    url: "/assests/project1.jpg",
+    link: "https://www.github.com",
+  },
+];
+
+export default projects;
