@@ -72,7 +72,7 @@ const Navbar = () => {
 
             <Link href="https://www.github.com" target="_blank">
               <DsButton
-                style={{ border: "2px solid white" }}
+                style={{ border: "1px solid white" }}
                 variant="outlined"
                 text={"Github"}
                 textVariant="buttonSmallBold"
