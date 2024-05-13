@@ -1,16 +1,24 @@
 import Layout from "../../compnents/Layout";
-import { Card, CardContent, Grid, Stack, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  Grid,
+  Stack,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import cards from "../../constants/cards";
 import DsButton from "../../compnents/DsButton";
 
 const Skills = ({ id }) => {
+  const theme = useTheme();
   return (
     <Layout id={id}>
       <Stack pt="20px" alignItems="center" width="100%" height="100%">
-        <Typography variant="h1Bold" color="#009ADE">
+        <Typography variant="h1Bold" color="typoHeading">
           Skills
         </Typography>
-        <Typography variant="h6" color="#54B1DA">
+        <Typography variant="h6" color="typoSubheading">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, aperiam!
         </Typography>
         <Grid container xs={6} direction="row" mt="10px">
@@ -27,14 +35,15 @@ const Skills = ({ id }) => {
                 <Card
                   key={card.id}
                   style={{
-                    backgroundColor: "#009ADE",
                     height: "100%",
                     width: "100%",
                   }}
                 >
                   <CardContent>
                     <Stack spacing="10px">
-                      <Typography variant="h6Bold">{card.title}</Typography>
+                      <Typography variant="h6Bold" color="typoWhite">
+                        {card.title}
+                      </Typography>
 
                       <Grid
                         container
@@ -47,7 +56,9 @@ const Skills = ({ id }) => {
                             <Grid item>
                               <DsButton
                                 variant="outlined"
-                                style={{ borderColor: "white" }}
+                                style={{
+                                  border: `1px solid ${theme.palette.borderColor}`,
+                                }}
                                 text={item}
                               />
                             </Grid>

@@ -6,6 +6,7 @@ import {
   Grid,
   Stack,
   Typography,
+  useTheme,
 } from "@mui/material";
 import DsButton from "../../compnents/DsButton";
 import DsTextField from "../../compnents/DsTextField";
@@ -14,6 +15,7 @@ import DsTextArea from "../../compnents/DsTextArea";
 import emailjs from "@emailjs/browser";
 
 const Contact = ({ id }) => {
+  const theme = useTheme();
   const intialMail = {
     name: "",
     email: "",
@@ -56,23 +58,24 @@ const Contact = ({ id }) => {
   return (
     <Layout id={id}>
       <Stack pt="20px" alignItems="center" width="100%" height="100%">
-        <Typography variant="h1Bold" color="#009ADE">
+        <Typography variant="h1Bold" color="typoHeading">
           Contact
         </Typography>
-        <Typography variant="h6" color="#54B1DA">
+        <Typography variant="h6" color="typoSubheading">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, aperiam!
         </Typography>
-        <Grid container xs={5} direction="row" mt="10px">
+        <Grid container xs={5} direction="row" mt="40px">
           <Card
             style={{
-              backgroundColor: "#009ADE",
               height: "100%",
               width: "100%",
             }}
           >
             <CardContent>
               <Stack spacing="30px" p="40px">
-                <Typography variant="h4Bold">Email Me</Typography>
+                <Typography variant="h4Bold" color="typoWhite">
+                  Email Me
+                </Typography>
                 <form ref={form} onSubmit={(e) => handleSubmit(e)}>
                   <Stack spacing="20px">
                     <DsTextField
@@ -103,7 +106,9 @@ const Contact = ({ id }) => {
                     />
                     <DsButton
                       variant="contained"
-                      style={{ border: "2px solid white" }}
+                      style={{
+                        border: `2px solid ${theme.palette.borderColor}`,
+                      }}
                       type="submit"
                       text="Submit"
                       fullWidth

@@ -9,11 +9,12 @@ const DsTextArea = ({ ...rest }) => {
         borderRadius: "8px",
         border: "none",
         outline: "none",
-        backgroundColor: "white",
         p: "40px !important",
         fontFamily: theme.typography.subtitle1.fontFamily,
-        fontSize: theme.typography.subtitle1.color,
+        fontSize: theme.typography.subtitle2.fontSize,
         resize: "none",
+        color: theme.palette.typoBlack,
+        backgroundColor: theme.palette.typoWhite,
       }}
       {...rest}
     />

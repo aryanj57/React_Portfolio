@@ -6,7 +6,7 @@ import {
   TimelineOppositeContent,
   TimelineSeparator,
 } from "@mui/lab";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography, useTheme } from "@mui/material";
 import React, { useState } from "react";
 
 const TimeLineCard = ({ profile, company, tasks, duration, src }) => {
@@ -25,17 +25,18 @@ const TimeLineCard = ({ profile, company, tasks, duration, src }) => {
     setShowInfo(false);
   };
 
+  const theme = useTheme();
   return (
     <TimelineItem>
       <TimelineOppositeContent
         sx={{ m: "auto 0" }}
         variant="body2"
-        color="text.secondary"
+        color="typoSubheading"
       >
         {duration}
       </TimelineOppositeContent>
       <TimelineSeparator>
-        <TimelineConnector sx={{ bgcolor: "#009ADE" }} />
+        <TimelineConnector sx={{ bgcolor: theme.palette.primary.main }} />
         <TimelineDot
           sx={{
             width: "40px",
@@ -53,11 +54,11 @@ const TimeLineCard = ({ profile, company, tasks, duration, src }) => {
               width: "40px",
               height: "40px",
               borderRadius: "50%",
-              border: "3px solid #009ADE",
+              border: `3px solid ${theme.palette.primary.main}`,
             }}
           />
         </TimelineDot>
-        <TimelineConnector sx={{ bgcolor: "#009ADE" }} />
+        <TimelineConnector sx={{ bgcolor: theme.palette.primary.main }} />
       </TimelineSeparator>
       <TimelineContent>
         <Stack
@@ -65,10 +66,10 @@ const TimeLineCard = ({ profile, company, tasks, duration, src }) => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <Typography color="black" variant="h6Bold">
+          <Typography variant="h6Bold" color="typoHeading">
             {profile}
           </Typography>
-          <Typography variant="subtitle2" color="black">
+          <Typography variant="subtitle2" color="typoSubheading">
             {company}
           </Typography>
         </Stack>
@@ -77,7 +78,7 @@ const TimeLineCard = ({ profile, company, tasks, duration, src }) => {
           <Stack spacing="8px" mt="12px">
             {tasks.map((task) => {
               return (
-                <Typography variant="subtitle1" color="grey">
+                <Typography variant="subtitle2" color="typoGrey">
                   {task}
                 </Typography>
               );
