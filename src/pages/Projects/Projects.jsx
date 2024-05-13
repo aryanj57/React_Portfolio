@@ -9,6 +9,7 @@ import {
   Link,
   Stack,
   Typography,
+  useTheme,
 } from "@mui/material";
 import RemixIcon from "../../compnents/RemixIcon";
 import projects from "../../constants/projects";
@@ -37,6 +38,8 @@ const Projects = ({ id }) => {
     return filterList;
   };
   const filteredProjects = getProjects();
+
+  const theme = useTheme();
   return (
     <Layout id={id}>
       <Stack
@@ -46,10 +49,10 @@ const Projects = ({ id }) => {
         width="100%"
         height="100%"
       >
-        <Typography variant="h1Bold" color="#009ADE">
+        <Typography variant="h1Bold" color="typoHeading">
           Projects
         </Typography>
-        <Typography variant="h6" color="#54B1DA">
+        <Typography variant="h6" color="typoSubheading">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, aperiam!
         </Typography>
 
@@ -58,10 +61,10 @@ const Projects = ({ id }) => {
             placeholder="search"
             value={search}
             sx={{
-              border: "2px solid #009ADE",
+              border: `2px solid ${theme.palette.highlightColor}`,
               borderRadius: "6px",
               p: "8px 12px",
-              color: "#007EB5",
+              color: theme.palette.highlightColor,
             }}
             onChange={(e) => setSearch(e.target.value)}
             endAdornment={
@@ -86,7 +89,6 @@ const Projects = ({ id }) => {
                 <Card
                   key={project.id}
                   style={{
-                    backgroundColor: "#009ADE",
                     boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
                     width: "100%",
                   }}
@@ -105,8 +107,10 @@ const Projects = ({ id }) => {
 
                   <CardContent>
                     <Stack spacing="10px">
-                      <Typography variant="h6Bold">{project.title}</Typography>
-                      <Typography variant="subtitle1">
+                      <Typography variant="h6Bold" color="typoWhite">
+                        {project.title}
+                      </Typography>
+                      <Typography variant="subtitle1" color="typoWhite">
                         {project.desc}
                       </Typography>
                       <Grid
@@ -114,14 +118,14 @@ const Projects = ({ id }) => {
                         direction="row"
                         rowGap="5px"
                         columnGap="5px"
-                        border="1px solid white"
+                        border={`1px solid ${theme.palette.borderColor}`}
                         p="8px"
                         borderRadius="6px"
                       >
                         {project.techStack.map((item) => {
                           return (
                             <Grid item>
-                              <Typography variant="subtitle1">
+                              <Typography variant="subtitle1" color="typoWhite">
                                 {item}
                               </Typography>
                             </Grid>
@@ -132,10 +136,9 @@ const Projects = ({ id }) => {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        color="#FFFFFF"
                         sx={{ textDecoration: "none" }}
                       >
-                        <Typography variant="subtitle1">
+                        <Typography variant="subtitle1" color="typoWhite">
                           {project.link}
                         </Typography>
                       </Link>
@@ -146,13 +149,6 @@ const Projects = ({ id }) => {
             );
           })}
         </Grid>
-
-        <Stack>
-          {false &&
-            filteredProjects?.map((item) => {
-              return <Typography color="red">{item}</Typography>;
-            })}
-        </Stack>
       </Stack>
     </Layout>
   );

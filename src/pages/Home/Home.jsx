@@ -1,8 +1,10 @@
 import Layout from "../../compnents/Layout";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography, useTheme } from "@mui/material";
 import DsButton from "../../compnents/DsButton";
 import resume from "../../docs/resume.pdf";
 const Home = ({ id }) => {
+  const theme = useTheme();
+
   return (
     <Layout id={id}>
       <Stack
@@ -14,17 +16,17 @@ const Home = ({ id }) => {
       >
         <Stack direction="row" width="80%" justifyContent="center" spacing={8}>
           <Stack width="30%">
-            <Typography variant="h1Bold" color="#009ADE">
+            <Typography variant="h1Bold" color="typoHeading">
               Hi I am,
             </Typography>
-            <Typography variant="h1Bold" color="#009ADE">
+            <Typography variant="h1Bold" color="typoHeading">
               Aryan Jaiswal
             </Typography>
-            <Typography variant="h6Bold" color="#009ADE">
+            <Typography variant="h6Bold" color="typoHeading">
               Software Development Engineer
             </Typography>
             <Stack>
-              <Typography variant="body1" color="#54B1DA">
+              <Typography variant="body1" color="typoSubheading">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem
                 placeat quo ex impedit nostrum facilis omnis deleniti quia dolor
                 illo?
@@ -54,7 +56,7 @@ const Home = ({ id }) => {
               width: "300px",
               height: "300px",
               borderRadius: "50%",
-              border: "4px solid #009ADE",
+              border: `4px solid ${theme.palette.primary.main}`,
             }}
           />
         </Stack>

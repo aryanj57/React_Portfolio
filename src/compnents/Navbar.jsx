@@ -2,14 +2,17 @@ import {
   AppBar,
   Link,
   Stack,
+  Switch,
   Toolbar,
   Typography,
   useTheme,
 } from "@mui/material";
 import { APP_ROUTES } from "../constants/APP_ROUTES";
 import DsButton from "./DsButton";
+import { lightTheme } from "../theme";
+import RemixIcon from "./RemixIcon";
 
-const Navbar = () => {
+const Navbar = ({ currentTheme, toggleTheme }) => {
   const theme = useTheme();
   const handleCLick = (e, id) => {
     e.preventDefault();
@@ -21,6 +24,7 @@ const Navbar = () => {
     });
   };
 
+  const { borderColor } = theme.palette;
   return (
     <>
       <AppBar position="fixed">
@@ -37,6 +41,11 @@ const Navbar = () => {
             <Stack spacing="15px" direction="row">
               <Typography
                 variant="h6Bold"
+                sx={{
+                  "&:hover": {
+                    cursor: "pointer",
+                  },
+                }}
                 onClick={(e) => handleCLick(e, APP_ROUTES.HOME.pathaname)}
               >
                 Home
@@ -44,6 +53,11 @@ const Navbar = () => {
 
               <Typography
                 variant="h6Bold"
+                sx={{
+                  "&:hover": {
+                    cursor: "pointer",
+                  },
+                }}
                 onClick={(e) => handleCLick(e, APP_ROUTES.EXP.pathaname)}
               >
                 Experience
@@ -51,12 +65,22 @@ const Navbar = () => {
 
               <Typography
                 variant="h6Bold"
+                sx={{
+                  "&:hover": {
+                    cursor: "pointer",
+                  },
+                }}
                 onClick={(e) => handleCLick(e, APP_ROUTES.SKILLS.pathaname)}
               >
                 Skills
               </Typography>
               <Typography
                 variant="h6Bold"
+                sx={{
+                  "&:hover": {
+                    cursor: "pointer",
+                  },
+                }}
                 onClick={(e) => handleCLick(e, APP_ROUTES.PROJECTS.pathaname)}
               >
                 Projects
@@ -64,20 +88,61 @@ const Navbar = () => {
 
               <Typography
                 variant="h6Bold"
+                sx={{
+                  "&:hover": {
+                    cursor: "pointer",
+                  },
+                }}
                 onClick={(e) => handleCLick(e, APP_ROUTES.CONTACT.pathaname)}
               >
                 Contact
               </Typography>
             </Stack>
+            <Stack spacing="15px" direction="row">
+              <Link href="https://www.github.com" target="_blank">
+                <DsButton
+                  style={{
+                    border: `2px solid ${borderColor}`,
+                  }}
+                  variant="outlined"
+                  text={"Github"}
+                  textVariant="buttonSmallBold"
+                />
+              </Link>
 
-            <Link href="https://www.github.com" target="_blank">
-              <DsButton
-                style={{ border: "1px solid white" }}
-                variant="outlined"
-                text={"Github"}
-                textVariant="buttonSmallBold"
+              <Switch
+                onChange={toggleTheme}
+                value={currentTheme === lightTheme}
+                icon={
+                  <Stack
+                    bgcolor={theme.palette.typoWhite}
+                    borderRadius="50%"
+                    p="2px"
+                  >
+                    <RemixIcon className="ri-sun-fill" />
+                  </Stack>
+                }
+                checkedIcon={
+                  <Stack
+                    bgcolor={theme.palette.typoWhite}
+                    borderRadius="50%"
+                    p="2px"
+                  >
+                    <RemixIcon className="ri-contrast-2-fill" />
+                  </Stack>
+                }
+                sx={{
+                  ".MuiSwitch-track": {
+                    bgcolor: "black !important",
+                  },
+                  "& .MuiSwitch-thumb": {
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  },
+                }}
               />
-            </Link>
+            </Stack>
           </Stack>
         </Toolbar>
       </AppBar>

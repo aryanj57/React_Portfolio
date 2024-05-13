@@ -15,9 +15,12 @@ const DsButton = ({
           textTransform: "none",
           px: "12px",
           py: "8px",
+          bgcolor: "buttonColor",
         }}
       >
-        <Typography variant={textVariant}>{text}</Typography>
+        <Typography variant={textVariant} color="typoWhite">
+          {text}
+        </Typography>
       </Button>
     </Box>
   );

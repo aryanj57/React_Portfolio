@@ -7,8 +7,11 @@ import Layout from "../../compnents/Layout";
 import Skills from "../Skills/Skills";
 import Experience from "../Experience/Experience";
 import Projects from "../Projects/Projects";
+import { useTheme } from "@mui/material";
 
-const Landing = () => {
+const Landing = ({ currentTheme, toggleTheme }) => {
+  const theme = useTheme();
+  const { bgColor } = theme.palette;
   const ids = {
     home: "home",
     skills: "skills",
@@ -19,8 +22,8 @@ const Landing = () => {
 
   return (
     <>
-      <Layout sx={{ backgroundColor: "#F7F7F7" }}>
-        <Navbar />
+      <Layout sx={{ backgroundColor: bgColor.main }}>
+        <Navbar currentTheme={currentTheme} toggleTheme={toggleTheme} />
         <Home id={ids.home} />
         <Experience id={ids.exp} />
         <Skills id={ids.skills} />

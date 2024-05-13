@@ -1,15 +1,20 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import Landing from "./pages/Landing/Landing";
-import theme from "./theme";
+import { lightTheme, darkTheme } from "./theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
+import { useState } from "react";
 
 function App() {
+  const [currentTheme, setCurrenttheme] = useState(lightTheme);
+  const toggleTheme = () => {
+    setCurrenttheme(currentTheme === darkTheme ? lightTheme : darkTheme);
+  };
   return (
     <div className="App">
       <CssBaseline>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={currentTheme}>
           <Router>
-            <Landing />
+            <Landing currentTheme={currentTheme} toggleTheme={toggleTheme} />
           </Router>
         </ThemeProvider>
       </CssBaseline>

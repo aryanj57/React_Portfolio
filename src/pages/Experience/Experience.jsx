@@ -7,10 +7,10 @@ const Experience = ({ id }) => {
   return (
     <Layout id={id}>
       <Stack pt="20px" alignItems="center" width="100%" height="100%">
-        <Typography variant="h1Bold" color="#009ADE">
+        <Typography variant="h1Bold" color="typoHeading">
           Experience
         </Typography>
-        <Typography variant="h6" color="#54B1DA">
+        <Typography variant="h6" color="typoSubheading">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, aperiam!
         </Typography>
         <ExperienceTimeline />
