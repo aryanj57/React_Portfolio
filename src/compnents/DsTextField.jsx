@@ -1,6 +1,6 @@
 import { TextField, useTheme } from "@mui/material";
 
-const DsTextField = (rest) => {
+const DsTextField = ({ styleProps, ...rest }) => {
   const theme = useTheme();
   return (
     <TextField
@@ -12,6 +12,7 @@ const DsTextField = (rest) => {
         "& .MuiInputBase-root": {
           color: `${theme.palette.typoBlack}`,
         },
+        ...styleProps,
       }}
       {...rest}
     />

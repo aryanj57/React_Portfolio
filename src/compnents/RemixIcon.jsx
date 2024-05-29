@@ -1,13 +1,14 @@
 import { useTheme } from "@mui/material";
 import React from "react";
 
-const RemixIcon = ({ className, withBorder = false, ...rest }) => {
+const RemixIcon = ({ className, color, withBorder = false, ...rest }) => {
   const theme = useTheme();
+  const finalColor = color ? color : theme.palette.typoWhite;
   return (
     <i
       className={className}
       style={{
-        color: `${theme.palette.typoBlack} !important`,
+        color: finalColor,
         display: "flex",
         width: "16px",
         height: "16px",

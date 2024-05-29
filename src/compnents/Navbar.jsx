@@ -1,6 +1,9 @@
 import {
   AppBar,
+  IconButton,
   Link,
+  Menu,
+  MenuItem,
   Stack,
   Switch,
   Toolbar,
@@ -11,10 +14,22 @@ import { APP_ROUTES } from "../constants/APP_ROUTES";
 import DsButton from "./DsButton";
 import { lightTheme } from "../theme";
 import RemixIcon from "./RemixIcon";
+import { useState } from "react";
 
 const Navbar = ({ currentTheme, toggleTheme }) => {
   const theme = useTheme();
-  const handleCLick = (e, id) => {
+
+  const [navMenuEl, setNavMenuEl] = useState(null);
+
+  const handleMenuOpen = (e) => {
+    setNavMenuEl(e.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setNavMenuEl(null);
+  };
+
+  const handleClick = (e, id) => {
     e.preventDefault();
     const ele = document.getElementById(id);
     console.log(ele);
@@ -22,7 +37,31 @@ const Navbar = ({ currentTheme, toggleTheme }) => {
       behavior: "smooth",
       block: "start",
     });
+    handleMenuClose();
   };
+
+  const navOptions = [
+    {
+      title: "Home",
+      link: APP_ROUTES.HOME.pathaname,
+    },
+    {
+      title: "Experience",
+      link: APP_ROUTES.EXP.pathaname,
+    },
+    {
+      title: "Skills",
+      link: APP_ROUTES.SKILLS.pathaname,
+    },
+    {
+      title: "Projects",
+      link: APP_ROUTES.PROJECTS.pathaname,
+    },
+    {
+      title: "Contact",
+      link: APP_ROUTES.CONTACT.pathaname,
+    },
+  ];
 
   const { borderColor } = theme.palette;
   return (
@@ -37,67 +76,62 @@ const Navbar = ({ currentTheme, toggleTheme }) => {
             alignItems="center"
             width="100%"
           >
-            <Typography variant="h6Bold">Aryan Jaiswal</Typography>
-            <Stack spacing="15px" direction="row">
-              <Typography
-                variant="h6Bold"
-                sx={{
-                  "&:hover": {
-                    cursor: "pointer",
-                  },
-                }}
-                onClick={(e) => handleCLick(e, APP_ROUTES.HOME.pathaname)}
-              >
-                Home
-              </Typography>
+            <Typography
+              sx={{ display: { xs: "none", md: "block", lg: "block" } }}
+              variant="h6Bold"
+            >
+              Aryan Jaiswal
+            </Typography>
 
-              <Typography
-                variant="h6Bold"
-                sx={{
-                  "&:hover": {
-                    cursor: "pointer",
-                  },
-                }}
-                onClick={(e) => handleCLick(e, APP_ROUTES.EXP.pathaname)}
-              >
-                Experience
-              </Typography>
-
-              <Typography
-                variant="h6Bold"
-                sx={{
-                  "&:hover": {
-                    cursor: "pointer",
-                  },
-                }}
-                onClick={(e) => handleCLick(e, APP_ROUTES.SKILLS.pathaname)}
-              >
-                Skills
-              </Typography>
-              <Typography
-                variant="h6Bold"
-                sx={{
-                  "&:hover": {
-                    cursor: "pointer",
-                  },
-                }}
-                onClick={(e) => handleCLick(e, APP_ROUTES.PROJECTS.pathaname)}
-              >
-                Projects
-              </Typography>
-
-              <Typography
-                variant="h6Bold"
-                sx={{
-                  "&:hover": {
-                    cursor: "pointer",
-                  },
-                }}
-                onClick={(e) => handleCLick(e, APP_ROUTES.CONTACT.pathaname)}
-              >
-                Contact
-              </Typography>
+            <Stack
+              display={{ xs: "none", md: "flex" }}
+              spacing="15px"
+              direction="row"
+            >
+              {navOptions.map(({ title, link }) => (
+                <Typography
+                  variant="h6Bold"
+                  sx={{
+                    "&:hover": {
+                      cursor: "pointer",
+                    },
+                  }}
+                  onClick={(e) => handleClick(e, link)}
+                >
+                  {title}
+                </Typography>
+              ))}
             </Stack>
+
+            {/* Mobile navbar */}
+            <Stack display={{ xs: "flex", md: "none", lg: "none" }}>
+              <IconButton onClick={(e) => handleMenuOpen(e)}>
+                <RemixIcon className="ri-menu-line" />
+              </IconButton>
+              <Menu
+                anchorEl={navMenuEl}
+                open={Boolean(navMenuEl)}
+                onClose={handleMenuClose}
+              >
+                {navOptions.map(({ title, link }) => (
+                  <MenuItem>
+                    <Typography
+                      variant="h6Bold"
+                      color="typoWhite"
+                      sx={{
+                        "&:hover": {
+                          cursor: "pointer",
+                        },
+                      }}
+                      onClick={(e) => handleClick(e, link)}
+                    >
+                      {title}
+                    </Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Stack>
+
             <Stack spacing="15px" direction="row">
               <Link href="https://www.github.com" target="_blank">
                 <DsButton
@@ -113,22 +147,9 @@ const Navbar = ({ currentTheme, toggleTheme }) => {
               <Switch
                 onChange={toggleTheme}
                 value={currentTheme === lightTheme}
-                icon={
-                  <Stack
-                    bgcolor={theme.palette.typoWhite}
-                    borderRadius="50%"
-                    p="2px"
-                  >
-                    <RemixIcon className="ri-sun-fill" />
-                  </Stack>
-                }
                 checkedIcon={
-                  <Stack
-                    bgcolor={theme.palette.typoWhite}
-                    borderRadius="50%"
-                    p="2px"
-                  >
-                    <RemixIcon className="ri-contrast-2-fill" />
+                  <Stack bgcolor="black" borderRadius="50%" p="2px">
+                    <RemixIcon className="ri-contrast-2-fill" color="white" />
                   </Stack>
                 }
                 sx={{

@@ -11,7 +11,6 @@ import {
 import DsButton from "../../compnents/DsButton";
 import DsTextField from "../../compnents/DsTextField";
 import { useRef, useState } from "react";
-import DsTextArea from "../../compnents/DsTextArea";
 import emailjs from "@emailjs/browser";
 
 const Contact = ({ id }) => {
@@ -61,49 +60,103 @@ const Contact = ({ id }) => {
         <Typography variant="h1Bold" color="typoHeading">
           Contact
         </Typography>
-        <Typography variant="h6" color="typoSubheading">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, aperiam!
+        <Typography
+          variant="h6"
+          color="typoSubheading"
+          textAlign={{ xs: "center", md: "", lg: "" }}
+          width={{ xs: "80%", md: "100%", lg: "100%" }}
+          mt="20px"
+        >
+          You can contact with any message throught following form
         </Typography>
-        <Grid container xs={5} direction="row" mt="40px">
+        <Grid
+          container
+          xs={12}
+          md={5}
+          lg={5}
+          direction="row"
+          mt={{ xs: "0px", md: "40px", lg: "40px" }}
+        >
           <Card
-            style={{
+            sx={{
               height: "100%",
               width: "100%",
+              boxShadow: { xs: "none", md: "default", lg: "default" },
             }}
           >
-            <CardContent>
+            <CardContent
+              sx={{
+                backgroundColor: {
+                  xs: theme.palette.bgColor.main,
+                  md: "inherit",
+                  lg: "inherit",
+                },
+              }}
+            >
               <Stack spacing="30px" p="40px">
-                <Typography variant="h4Bold" color="typoWhite">
+                <Typography
+                  variant="h4Bold"
+                  color={{ xs: theme.palette.primary.main, md: "typoWhite" }}
+                >
                   Email Me
                 </Typography>
                 <form ref={form} onSubmit={(e) => handleSubmit(e)}>
                   <Stack spacing="20px">
                     <DsTextField
+                      styleProps={{
+                        border: {
+                          xs: `1px solid ${theme.palette.typoBlack}`,
+                          md: "none",
+                          lg: "none",
+                        },
+                      }}
                       placeholder="Your Name"
                       onChange={(e) => onValueChange(e)}
                       name="name"
                       value={mail.name}
                     />
                     <DsTextField
+                      styleProps={{
+                        border: {
+                          xs: `1px solid ${theme.palette.typoBlack}`,
+                          md: "none",
+                          lg: "none",
+                        },
+                      }}
                       placeholder="Email"
                       onChange={(e) => onValueChange(e)}
                       name="email"
                       value={mail.email}
                     />
                     <DsTextField
+                      styleProps={{
+                        border: {
+                          xs: `1px solid ${theme.palette.typoBlack}`,
+                          md: "none",
+                          lg: "none",
+                        },
+                      }}
                       placeholder="Subject"
                       onChange={(e) => onValueChange(e)}
                       name="subject"
                       value={mail.subject}
                     />
-                    <DsTextArea
+                    <DsTextField
+                      styleProps={{
+                        border: {
+                          xs: `1px solid ${theme.palette.typoBlack}`,
+                          md: "none",
+                          lg: "none",
+                        },
+                      }}
                       placeholder="Message"
                       name="message"
                       value={mail.message}
                       onChange={(e) => onValueChange(e)}
-                      minRows={3}
-                      maxRows={10}
+                      multiline="true"
+                      rows="4"
                     />
+
                     <DsButton
                       variant="contained"
                       style={{
