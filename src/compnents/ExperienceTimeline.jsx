@@ -3,7 +3,13 @@ import TimelineCard from "./TimeLineCard";
 import experience from "../constants/experience";
 const ExperienceTimeline = () => {
   return (
-    <Timeline position="alternate" sx={{ width: "80%" }}>
+    <Timeline
+      position="alternate"
+      sx={{
+        width: { xs: "600px", md: "80%", lg: "80%" },
+        alignItems: "center",
+      }}
+    >
       {experience.map((item) => {
         return (
           <TimelineCard

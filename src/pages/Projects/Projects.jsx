@@ -52,11 +52,17 @@ const Projects = ({ id }) => {
         <Typography variant="h1Bold" color="typoHeading">
           Projects
         </Typography>
-        <Typography variant="h6" color="typoSubheading">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, aperiam!
+        <Typography
+          variant="h6"
+          color="typoSubheading"
+          textAlign={{ xs: "center", md: "", lg: "" }}
+          width={{ xs: "80%", md: "100%", lg: "100%" }}
+          mt="20px"
+        >
+          A selection of projects I've created throughout my career
         </Typography>
 
-        <Stack mt="40px">
+        <Stack mt="40px" width={{ xs: "50%", md: "20%", lg: "20%" }}>
           <InputBase
             placeholder="search"
             value={search}
@@ -75,12 +81,14 @@ const Projects = ({ id }) => {
             }
           />
         </Stack>
-        <Grid container xs={8} direction="row" mt="10px">
+        <Grid container xs={10} md={8} lg={8} direction="row" mt="30px">
           {filteredProjects.map((project) => {
             return (
               <Grid
                 item
-                xs={4}
+                xs={12}
+                md={4}
+                lg={4}
                 display="flex"
                 justifyContent="center"
                 alignItems="flex-start"

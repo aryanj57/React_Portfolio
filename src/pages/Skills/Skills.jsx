@@ -18,15 +18,24 @@ const Skills = ({ id }) => {
         <Typography variant="h1Bold" color="typoHeading">
           Skills
         </Typography>
-        <Typography variant="h6" color="typoSubheading">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, aperiam!
+        <Typography
+          variant="h6"
+          color="typoSubheading"
+          textAlign={{ xs: "center", md: "", lg: "" }}
+          width={{ xs: "80%", md: "100%", lg: "100%" }}
+          mt="20px"
+        >
+          To demonstrate my qualifications, here's a breakdown of the
+          technologies I'm proficient in
         </Typography>
-        <Grid container xs={6} direction="row" mt="10px">
+        <Grid container xs={10} md={6} lg={6} direction="row" mt="10px">
           {cards.map((card) => {
             return (
               <Grid
                 item
-                xs={6}
+                xs={12}
+                md={6}
+                lg={6}
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
