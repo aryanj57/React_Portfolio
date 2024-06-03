@@ -28,14 +28,14 @@ const Skills = ({ id }) => {
           To demonstrate my qualifications, here's a breakdown of the
           technologies I'm proficient in
         </Typography>
-        <Grid container xs={10} md={6} lg={6} direction="row" mt="10px">
+        <Grid container xs={10} md={10} lg={10} direction="row" mt="10px">
           {cards.map((card) => {
             return (
               <Grid
                 item
                 xs={12}
-                md={6}
-                lg={6}
+                md={4}
+                lg={4}
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
@@ -62,7 +62,7 @@ const Skills = ({ id }) => {
                       >
                         {card.skillsList.map((item) => {
                           return (
-                            <Grid item>
+                            <Grid item key={item.id}>
                               <DsButton
                                 variant="outlined"
                                 style={{

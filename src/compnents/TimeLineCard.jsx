@@ -12,13 +12,17 @@ import React, { useState } from "react";
 const TimeLineCard = ({ profile, company, tasks, duration, src }) => {
   const [showInfo, setShowInfo] = useState(false);
 
+  let timeoutId;
   const handleMouseEnter = () => {
-    setTimeout(() => {
-      setShowInfo(true);
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => {
+      if (!showInfo) setShowInfo(true);
     }, 500);
   };
 
   const handleMouseLeave = () => {
+    clearTimeout(timeoutId);
     setShowInfo(false);
   };
 
@@ -71,21 +75,23 @@ const TimeLineCard = ({ profile, company, tasks, duration, src }) => {
           </Typography>
         </Stack>
 
-        {showInfo && (
-          <Stack
-            spacing="8px"
-            mt="12px"
-            display={{ xs: "none", md: "flex", lg: "flex" }}
-          >
-            {tasks.map((task) => {
-              return (
-                <Typography variant="subtitle2" color="typoGrey">
-                  {task}
-                </Typography>
-              );
-            })}
-          </Stack>
-        )}
+        <Stack
+          spacing="8px"
+          mt="12px"
+          display={{
+            xs: "none",
+            md: showInfo ? "flex" : "none",
+            lg: showInfo ? "flex" : "none",
+          }}
+        >
+          {tasks.map((task) => {
+            return (
+              <Typography variant="subtitle2" color="typoGrey">
+                {task}
+              </Typography>
+            );
+          })}
+        </Stack>
       </TimelineContent>
     </TimelineItem>
   );

@@ -2,22 +2,27 @@ const cards = [
   {
     id: 0,
     title: "Frontend",
-    skillsList: ["Redux", "ReactJS", "NextJS", "HTML"],
+    skillsList: ["Redux Toolkit", "ReactJS", "Material-UI", "Formik", "Yup"],
   },
   {
-    id: 0,
+    id: 1,
     title: "Backend",
-    skillsList: ["NodeJS", "MongoDB", "NextJS", "HTML"],
+    skillsList: ["NodeJS", "ExpressJS", "MongoDB", "MySQL"],
   },
   {
-    id: 0,
-    title: "DevOps",
-    skillsList: ["CI/CD", "ReactJS", "NextJS", "HTML"],
+    id: 2,
+    title: "Problem Solving",
+    skillsList: ["Data Structures", "Algorithms"],
   },
   {
-    id: 0,
-    title: "Android",
-    skillsList: ["IOS", "Kotlin", "NextJS", "HTML"],
+    id: 3,
+    title: "Computer Science",
+    skillsList: ["OOPs", "DBMS", "Computer Networks", "Operating Systems"],
+  },
+  {
+    id: 4,
+    title: "Languages",
+    skillsList: ["C++", "Javascript", "Computer Networks", "Operating Systems"],
   },
 ];
 

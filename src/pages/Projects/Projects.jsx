@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../compnents/Layout";
 import {
+  Box,
   Card,
   CardContent,
   CardMedia,
@@ -16,30 +17,36 @@ import projects from "../../constants/projects";
 
 const Projects = ({ id }) => {
   const [search, setSearch] = useState("");
+  const [filteredProjects, setFilteredProjects] = useState(projects);
 
-  const searchFilter = (item) => {
-    let flag = true;
+  useEffect(() => {
+    const searchFilter = (item) => {
+      let flag = true;
 
-    search.split("").some((ele) => {
-      if (!item.toLowerCase().includes(ele.toLowerCase())) {
-        flag = false;
-        return true;
-      }
-      return false;
-    });
+      search.split("").some((ele) => {
+        if (!item.toLowerCase().includes(ele.toLowerCase())) {
+          flag = false;
+          return true;
+        }
+        return false;
+      });
 
-    return flag;
-  };
+      return flag;
+    };
 
-  const getProjects = () => {
-    const projectsCopy = JSON.parse(JSON.stringify(projects));
-    const filterList = projectsCopy.filter((item) => searchFilter(item.title));
+    const getProjects = () => {
+      return projects.filter((item) => searchFilter(item.title));
+    };
 
-    return filterList;
-  };
-  const filteredProjects = getProjects();
+    let timerout = setTimeout(() => {
+      setFilteredProjects(getProjects());
+    }, 800);
+
+    return () => clearTimeout(timerout);
+  }, [search]);
 
   const theme = useTheme();
+
   return (
     <Layout id={id}>
       <Stack
@@ -105,6 +112,7 @@ const Projects = ({ id }) => {
                     <CardMedia
                       sx={{
                         borderRadius: "6px",
+                        border: `2px solid ${theme.palette.typoWhite}`,
                       }}
                       component="img"
                       height="200px"
@@ -140,16 +148,18 @@ const Projects = ({ id }) => {
                           );
                         })}
                       </Grid>
-                      <Link
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        sx={{ textDecoration: "none" }}
-                      >
-                        <Typography variant="subtitle1" color="typoWhite">
-                          {project.link}
-                        </Typography>
-                      </Link>
+                      <Box width="90%">
+                        <Link
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          sx={{ textDecoration: "none" }}
+                        >
+                          <Typography variant="subtitle1" color="typoWhite">
+                            link : {project.title}
+                          </Typography>
+                        </Link>
+                      </Box>
                     </Stack>
                   </CardContent>
                 </Card>
