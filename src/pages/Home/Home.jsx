@@ -1,18 +1,20 @@
-import Layout from "../../compnents/Layout";
 import { Box, Stack, Typography, useTheme } from "@mui/material";
 import DsButton from "../../compnents/DsButton";
+import Section from "../../compnents/Section";
 import resume from "../../docs/resume.pdf";
 const Home = ({ id }) => {
   const theme = useTheme();
 
   return (
-    <Layout id={id}>
+    <Section
+      id={id}
+      customSX={{ justifyContent: "center", alignItems: "center" }}
+    >
       <Stack
         justifyContent={{ xs: "flex-start", md: "center", lg: "center" }}
         alignItems="center"
         width="100%"
         height="100%"
-        pt="20px"
       >
         <Stack
           direction={{ xs: "column", md: "row", lg: "row" }}
@@ -27,19 +29,15 @@ const Home = ({ id }) => {
             alignItems={{ xs: "center", md: "flex-start", lg: "flex-start" }}
             spacing={1}
           >
-            <Typography variant="h1Bold" color="typoHeading">
-              Hi I am,
-            </Typography>
-            <Typography variant="h1Bold" color="typoHeading">
-              Aryan Jaiswal
-            </Typography>
-            <Typography variant="h6Bold" color="typoHeading">
+            <Typography variant="h1Bold">Hi I am,</Typography>
+            <Typography variant="h1Bold">Aryan Jaiswal</Typography>
+            <Typography variant="h5Bold">
               Software Development Engineer
             </Typography>
             <Stack>
               <Typography
                 variant="body1"
-                color="typoSubheading"
+                color="text.secondary"
                 textAlign={{ xs: "center", md: "left", lg: "left" }}
               >
                 Highly skilled Frontend Developer with proficiency in the{" "}
@@ -51,14 +49,18 @@ const Home = ({ id }) => {
             <Stack sx={{ pt: "20px" }}>
               <a
                 href={resume}
-                download="Aryan Jaiswal"
+                // download="Aryan Jaiswal"
+                onClick={() => window.open(resume, "_blank")}
                 target="_blank"
                 rel="noreferrer"
               >
                 <DsButton
                   variant="contained"
                   text="Resume"
-                  style={{ width: "140px" }}
+                  sx={{
+                    color: theme.palette.primary.contrastText,
+                    width: "140px",
+                  }}
                 />
               </a>
             </Stack>
@@ -75,11 +77,12 @@ const Home = ({ id }) => {
               height: "300px",
               borderRadius: "50%",
               border: `4px solid ${theme.palette.primary.main}`,
+              objectFit: "cover",
             }}
           />
         </Stack>
       </Stack>
-    </Layout>
+    </Section>
   );
 };
 

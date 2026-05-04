@@ -33,19 +33,19 @@ export const typographyValue = {
     fontWeight: 400,
   },
   h5Bold: {
-    fontSize: "1.25rem",
+    fontSize: "1.15rem",
     fontWeight: 600,
   },
   h5: {
-    fontSize: "1.25rem",
+    fontSize: "1.15rem",
     fontWeight: 400,
   },
   h6Bold: {
-    fontSize: "1rem",
+    fontSize: "0.9rem",
     fontWeight: 600,
   },
   h6: {
-    fontSize: "1rem",
+    fontSize: "0.9rem",
     fontWeight: 400,
   },
   subtitle1Bold: {

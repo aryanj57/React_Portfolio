@@ -3,7 +3,7 @@ import React from "react";
 
 const RemixIcon = ({ className, color, withBorder = false, ...rest }) => {
   const theme = useTheme();
-  const finalColor = color ? color : theme.palette.typoWhite;
+  const finalColor = color ? color : theme.palette.divider;
   return (
     <i
       className={className}

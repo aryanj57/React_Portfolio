@@ -1,6 +1,6 @@
 import { Timeline } from "@mui/lab";
-import TimelineCard from "./TimeLineCard";
 import experience from "../constants/experience";
+import TimelineCard from "./TimeLineCard";
 const ExperienceTimeline = () => {
   return (
     <Timeline
@@ -10,7 +10,7 @@ const ExperienceTimeline = () => {
         alignItems: "center",
       }}
     >
-      {experience.map((item) => {
+      {experience.map((item, index) => {
         return (
           <TimelineCard
             key={item.id}
@@ -19,6 +19,7 @@ const ExperienceTimeline = () => {
             tasks={item.tasks}
             duration={item.duration}
             src={item.src}
+            isLast={index === experience.length - 1}
           />
         );
       })}

@@ -22,7 +22,7 @@ const cards = [
   {
     id: 4,
     title: "Languages",
-    skillsList: ["C++", "Javascript", "Computer Networks", "Operating Systems"],
+    skillsList: ["C++", "Javascript", "Typescript"],
   },
 ];
 

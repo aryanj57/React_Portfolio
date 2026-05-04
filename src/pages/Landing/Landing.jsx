@@ -1,34 +1,80 @@
-import React from "react";
 import Home from "../Home/Home";
 
-import Contact from "../Contact/Contact";
-import Navbar from "../../compnents/Navbar";
 import Layout from "../../compnents/Layout";
-import Skills from "../Skills/Skills";
+import Navbar from "../../compnents/Navbar";
+import Contact from "../Contact/Contact";
 import Experience from "../Experience/Experience";
+import Skills from "../Skills/Skills";
+
+import { useEffect, useRef, useState } from "react";
+import { ids } from "../../constants/global";
 import Projects from "../Projects/Projects";
-import { useTheme } from "@mui/material";
 
 const Landing = ({ currentTheme, toggleTheme }) => {
-  const theme = useTheme();
-  const { bgColor } = theme.palette;
-  const ids = {
-    home: "home",
-    skills: "skills",
-    exp: "experience",
-    projects: "projects",
-    contact: "contact",
-  };
+  const [selectedId, setSelectedId] = useState(ids.HOME);
+  const isScrollingRef = useRef(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      const sectionIds = Object.values(ids);
+
+      const elements = sectionIds
+        .map((id) => document.getElementById(id))
+        .filter(Boolean);
+
+      if (!elements.length) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (isScrollingRef.current) return;
+          let maxEntry = null;
+
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              if (
+                !maxEntry ||
+                entry.intersectionRatio > maxEntry.intersectionRatio
+              ) {
+                maxEntry = entry;
+              }
+            }
+          });
+
+          if (maxEntry) {
+            setSelectedId(maxEntry.target.id);
+          }
+        },
+        {
+          threshold: [0.2, 0.6],
+          rootMargin: "-100px 0px -40% 0px",
+        }
+      );
+
+      elements.forEach((el) => observer.observe(el));
+
+      return () => {
+        elements.forEach((el) => observer.unobserve(el));
+      };
+    }, 0);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <>
-      <Layout sx={{ backgroundColor: bgColor.main }}>
-        <Navbar currentTheme={currentTheme} toggleTheme={toggleTheme} />
-        <Home id={ids.home} />
-        <Experience id={ids.exp} />
-        <Skills id={ids.skills} />
-        <Projects id={ids.projects} />
-        <Contact id={ids.contact} />
+      <Layout>
+        <Navbar
+          selectedId={selectedId}
+          setSelectedId={setSelectedId}
+          currentTheme={currentTheme}
+          toggleTheme={toggleTheme}
+          setIsScrolling={(val) => (isScrollingRef.current = val)}
+        />
+        <Home id={ids.HOME} />
+        <Experience id={ids.EXP} />
+        <Skills id={ids.SKILL} />
+        <Projects id={ids.PRO} />
+        <Contact id={ids.CON} />
       </Layout>
     </>
   );
