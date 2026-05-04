@@ -1,8 +1,8 @@
-import { BrowserRouter as Router } from "react-router-dom";
-import Landing from "./pages/Landing/Landing";
-import { lightTheme, darkTheme } from "./theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { useState } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Landing from "./pages/Landing/Landing";
+import { darkTheme, lightTheme } from "./theme";
 
 function App() {
   const [currentTheme, setCurrenttheme] = useState(lightTheme);
@@ -11,13 +11,12 @@ function App() {
   };
   return (
     <div className="App">
-      <CssBaseline>
-        <ThemeProvider theme={currentTheme}>
-          <Router>
-            <Landing currentTheme={currentTheme} toggleTheme={toggleTheme} />
-          </Router>
-        </ThemeProvider>
-      </CssBaseline>
+      <ThemeProvider theme={currentTheme}>
+        <CssBaseline />
+        <Router>
+          <Landing currentTheme={currentTheme} toggleTheme={toggleTheme} />
+        </Router>
+      </ThemeProvider>
     </div>
   );
 }

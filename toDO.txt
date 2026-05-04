@@ -1,3 +1,14 @@
-* ScrollIntoView offset
-* textarea padding fix & error
-* themeing
+ChangeLog:
+
+* Added scroll to section feature
+* Added no search found element on project search
+* Updated theme colors for both light mode & dark mode
+* Updated theme variables , using only few relevant now
+* Created Section wrapper & shifted wrapping logic from Layout to Section
+* Refactored Layout to only act as container, removed grid logic
+* Fixed CSSBaseline in App.js , now typography works
+* Added bright/dark variants to Button
+* Fixed timeline card timeout logic, no longer flickering
+* Added observer to update navbar based on section
+* Added constants files for hardcoded values
+* Updated resume & experience data

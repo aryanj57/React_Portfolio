@@ -1,25 +1,21 @@
-import React from "react";
-import Layout from "../../compnents/Layout";
 import { Stack, Typography } from "@mui/material";
 import ExperienceTimeline from "../../compnents/ExperienceTimeline";
+import Section from "../../compnents/Section";
 
 const Experience = ({ id }) => {
   return (
-    <Layout id={id}>
+    <Section id={id}>
       <Stack
         pt="20px"
         alignItems="center"
-        justifyContent="center"
         width="100%"
         height="100%"
         display="flex"
       >
-        <Typography variant="h1Bold" color="typoHeading">
-          Experience
-        </Typography>
+        <Typography variant="h1Bold">Experience</Typography>
         <Typography
           variant={{ xs: "subtitle2", md: "h6", lg: "h6" }}
-          color="typoSubheading"
+          color="text.secondary"
           textAlign={{ xs: "center", md: "", lg: "" }}
           width={{ xs: "80%", md: "100%", lg: "100%" }}
           mt="20px"
@@ -36,7 +32,7 @@ const Experience = ({ id }) => {
           <ExperienceTimeline />
         </Stack>
       </Stack>
-    </Layout>
+    </Section>
   );
 };
 

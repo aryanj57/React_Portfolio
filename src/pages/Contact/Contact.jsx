@@ -1,4 +1,4 @@
-import Layout from "../../compnents/Layout";
+import emailjs from "@emailjs/browser";
 import {
   Alert,
   Card,
@@ -8,10 +8,10 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { useRef, useState } from "react";
 import DsButton from "../../compnents/DsButton";
 import DsTextField from "../../compnents/DsTextField";
-import { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
+import Section from "../../compnents/Section";
 
 const Contact = ({ id }) => {
   const theme = useTheme();
@@ -55,14 +55,12 @@ const Contact = ({ id }) => {
   };
 
   return (
-    <Layout id={id}>
-      <Stack pt="20px" alignItems="center" width="100%" height="100%">
-        <Typography variant="h1Bold" color="typoHeading">
-          Contact
-        </Typography>
+    <Section id={id}>
+      <Stack alignItems="center" width="100%" height="100%">
+        <Typography variant="h1Bold">Contact</Typography>
         <Typography
           variant="h6"
-          color="typoSubheading"
+          color="text.secondary"
           textAlign={{ xs: "center", md: "", lg: "" }}
           width={{ xs: "80%", md: "100%", lg: "100%" }}
           mt="20px"
@@ -87,68 +85,45 @@ const Contact = ({ id }) => {
             <CardContent
               sx={{
                 backgroundColor: {
-                  xs: theme.palette.bgColor.main,
+                  xs: theme.palette.background.default,
                   md: "inherit",
                   lg: "inherit",
                 },
               }}
             >
-              <Stack spacing="30px" p="40px">
+              <Stack spacing="16px" p="20px">
                 <Typography
                   variant="h4Bold"
-                  color={{ xs: theme.palette.primary.main, md: "typoWhite" }}
+                  sx={{
+                    color: {
+                      xs: "text.primary",
+                      md: "primary.contrastText",
+                    },
+                  }}
                 >
                   Email Me
                 </Typography>
                 <form ref={form} onSubmit={(e) => handleSubmit(e)}>
-                  <Stack spacing="20px">
+                  <Stack gap="20px">
                     <DsTextField
-                      styleProps={{
-                        border: {
-                          xs: `1px solid ${theme.palette.typoBlack}`,
-                          md: "none",
-                          lg: "none",
-                        },
-                      }}
                       placeholder="Your Name"
                       onChange={(e) => onValueChange(e)}
                       name="name"
                       value={mail.name}
                     />
                     <DsTextField
-                      styleProps={{
-                        border: {
-                          xs: `1px solid ${theme.palette.typoBlack}`,
-                          md: "none",
-                          lg: "none",
-                        },
-                      }}
                       placeholder="Email"
                       onChange={(e) => onValueChange(e)}
                       name="email"
                       value={mail.email}
                     />
                     <DsTextField
-                      styleProps={{
-                        border: {
-                          xs: `1px solid ${theme.palette.typoBlack}`,
-                          md: "none",
-                          lg: "none",
-                        },
-                      }}
                       placeholder="Subject"
                       onChange={(e) => onValueChange(e)}
                       name="subject"
                       value={mail.subject}
                     />
                     <DsTextField
-                      styleProps={{
-                        border: {
-                          xs: `1px solid ${theme.palette.typoBlack}`,
-                          md: "none",
-                          lg: "none",
-                        },
-                      }}
                       placeholder="Message"
                       name="message"
                       value={mail.message}
@@ -158,10 +133,8 @@ const Contact = ({ id }) => {
                     />
 
                     <DsButton
+                      isDark
                       variant="contained"
-                      style={{
-                        border: `2px solid ${theme.palette.borderColor}`,
-                      }}
                       type="submit"
                       text="Submit"
                       fullWidth
@@ -172,7 +145,9 @@ const Contact = ({ id }) => {
                         <Alert
                           variant="filled"
                           severity="error"
-                          sx={{ borderRadius: "8px" }}
+                          sx={{
+                            borderRadius: "8px",
+                          }}
                         >
                           {error.msg}
                         </Alert>
@@ -185,7 +160,7 @@ const Contact = ({ id }) => {
           </Card>
         </Grid>
       </Stack>
-    </Layout>
+    </Section>
   );
 };
 

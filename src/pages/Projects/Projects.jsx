@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-import Layout from "../../compnents/Layout";
 import {
   Box,
   Card,
@@ -12,7 +10,9 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { useEffect, useState } from "react";
 import RemixIcon from "../../compnents/RemixIcon";
+import Section from "../../compnents/Section";
 import projects from "../../constants/projects";
 
 const Projects = ({ id }) => {
@@ -46,22 +46,14 @@ const Projects = ({ id }) => {
   }, [search]);
 
   const theme = useTheme();
-
+  console.log("1111", theme.palette);
   return (
-    <Layout id={id}>
-      <Stack
-        py="150px"
-        justifyContent="center"
-        alignItems="center"
-        width="100%"
-        height="100%"
-      >
-        <Typography variant="h1Bold" color="typoHeading">
-          Projects
-        </Typography>
+    <Section id={id}>
+      <Stack alignItems="center" width="100%" height="100%">
+        <Typography variant="h1Bold">Projects</Typography>
         <Typography
           variant="h6"
-          color="typoSubheading"
+          color="text.secondary"
           textAlign={{ xs: "center", md: "", lg: "" }}
           width={{ xs: "80%", md: "100%", lg: "100%" }}
           mt="20px"
@@ -74,10 +66,10 @@ const Projects = ({ id }) => {
             placeholder="search"
             value={search}
             sx={{
-              border: `2px solid ${theme.palette.highlightColor}`,
+              border: 2,
+              borderColor: theme.palette.background.paper,
               borderRadius: "6px",
               p: "8px 12px",
-              color: theme.palette.highlightColor,
             }}
             onChange={(e) => setSearch(e.target.value)}
             endAdornment={
@@ -89,86 +81,129 @@ const Projects = ({ id }) => {
           />
         </Stack>
         <Grid container xs={10} md={8} lg={8} direction="row" mt="30px">
-          {filteredProjects.map((project) => {
-            return (
-              <Grid
-                item
-                xs={12}
-                md={4}
-                lg={4}
-                display="flex"
-                justifyContent="center"
-                alignItems="flex-start"
-                p="20px"
+          {filteredProjects.length === 0 ? (
+            <Stack
+              width="100%"
+              alignItems="center"
+              justifyContent="center"
+              spacing="12px"
+              py="60px"
+            >
+              <RemixIcon
+                className="ri-file-search-line"
+                style={{ fontSize: "48px", color: theme.palette.text.disabled }}
+              />
+              <Typography variant="h3Bold" color="text.primary">
+                No projects found
+              </Typography>
+              <Typography variant="h5" color="text.secondary">
+                No results for "{search}" — try a different keyword
+              </Typography>
+              <Typography
+                variant="h5Bold"
+                color="primary.main"
+                sx={{ cursor: "pointer" }}
+                onClick={() => setSearch("")}
               >
-                <Card
-                  key={project.id}
-                  style={{
-                    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-                    width: "100%",
-                  }}
+                Clear search
+              </Typography>
+            </Stack>
+          ) : (
+            filteredProjects.map((project) => {
+              return (
+                <Grid
+                  item
+                  xs={12}
+                  md={4}
+                  lg={4}
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="flex-start"
+                  p="20px"
                 >
-                  <Stack p="15px">
-                    <CardMedia
-                      sx={{
-                        borderRadius: "6px",
-                        border: `2px solid ${theme.palette.typoWhite}`,
-                      }}
-                      component="img"
-                      height="200px"
-                      image={project.url}
-                      alt="image"
-                    />
-                  </Stack>
-
-                  <CardContent>
-                    <Stack spacing="10px">
-                      <Typography variant="h6Bold" color="typoWhite">
-                        {project.title}
-                      </Typography>
-                      <Typography variant="subtitle1" color="typoWhite">
-                        {project.desc}
-                      </Typography>
-                      <Grid
-                        container
-                        direction="row"
-                        rowGap="5px"
-                        columnGap="5px"
-                        border={`1px solid ${theme.palette.borderColor}`}
-                        p="8px"
-                        borderRadius="6px"
-                      >
-                        {project.techStack.map((item) => {
-                          return (
-                            <Grid item>
-                              <Typography variant="subtitle1" color="typoWhite">
-                                {item}
-                              </Typography>
-                            </Grid>
-                          );
-                        })}
-                      </Grid>
-                      <Box width="90%">
-                        <Link
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          sx={{ textDecoration: "none" }}
-                        >
-                          <Typography variant="subtitle1" color="typoWhite">
-                            link : {project.title}
-                          </Typography>
-                        </Link>
-                      </Box>
+                  <Card
+                    key={project.id}
+                    style={{
+                      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                      width: "100%",
+                    }}
+                  >
+                    <Stack p="15px">
+                      <CardMedia
+                        sx={{
+                          borderRadius: "6px",
+                        }}
+                        component="img"
+                        height="200px"
+                        image={project.url}
+                        alt="image"
+                      />
                     </Stack>
-                  </CardContent>
-                </Card>
-              </Grid>
-            );
-          })}
+
+                    <CardContent>
+                      <Stack spacing="10px">
+                        <Typography
+                          variant="h6Bold"
+                          color="primary.contrastText"
+                        >
+                          {project.title}
+                        </Typography>
+                        <Typography
+                          variant="subtitle1"
+                          color="primary.contrastText"
+                        >
+                          {project.desc}
+                        </Typography>
+                        <Grid
+                          container
+                          direction="row"
+                          rowGap="5px"
+                          columnGap="5px"
+                          p="8px"
+                          borderRadius="6px"
+                          sx={{
+                            border: 1,
+                            borderColor: "divider",
+                          }}
+                        >
+                          {project.techStack.map((item) => {
+                            return (
+                              <Grid item>
+                                <Typography
+                                  variant="subtitle1"
+                                  color="primary.contrastText"
+                                >
+                                  {item}
+                                </Typography>
+                              </Grid>
+                            );
+                          })}
+                        </Grid>
+                        <Box width="90%">
+                          <Link
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            sx={{ textDecoration: "none" }}
+                          >
+                            <Typography
+                              variant="subtitle1"
+                              color="primary.contrastText"
+                            >
+                              link : {project.title}
+                            </Typography>
+                          </Link>
+                        </Box>
+                      </Stack>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              );
+            })
+          )}
         </Grid>
       </Stack>
-    </Layout>
+    </Section>
   );
 };
 

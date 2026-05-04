@@ -1,17 +1,12 @@
-import { TextField, useTheme } from "@mui/material";
+import { TextField } from "@mui/material";
 
 const DsTextField = ({ styleProps, ...rest }) => {
-  const theme = useTheme();
   return (
     <TextField
       sx={{
         borderRadius: "8px",
-        color: "typoBlack !important",
-        backgroundColor: "typoWhite",
+        backgroundColor: "background.default",
         outline: "none",
-        "& .MuiInputBase-root": {
-          color: `${theme.palette.typoBlack}`,
-        },
         ...styleProps,
       }}
       {...rest}
